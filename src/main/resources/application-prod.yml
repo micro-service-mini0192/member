@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql:3306/member
+    url: jdbc:mysql://mysql:3306/member?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password: 1234
 
@@ -14,7 +14,3 @@ eureka.client:
   fetchRegistry: true
   serviceUrl:
     defaultZone: http://eureka:8761/eureka
-
-server:
-  port: 8082
-  forward-headers-strategy: FRAMEWORK
