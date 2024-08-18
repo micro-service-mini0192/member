@@ -1,8 +1,4 @@
-JWTKey: test
-
 spring:
-  application.name: member
-
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysql:3306/member

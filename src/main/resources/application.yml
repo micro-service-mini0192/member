@@ -1,8 +1,6 @@
 JWTKey: test
 
 spring:
-  application.name: member
-
   profiles:
     active: prod
 
@@ -11,7 +9,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
 
 resilience4j:
   retry:
