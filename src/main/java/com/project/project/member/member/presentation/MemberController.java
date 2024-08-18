@@ -22,13 +22,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @Validated
-@RequestMapping("/api/v1")
 @Tag(name = "Member API")
 public class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping
+    @PostMapping("/test")
     @Operation(summary = "Join", description = "Create member")
     @ApiResponses(
             value = {
@@ -46,7 +45,7 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Creation completed");
     }
 
-    @GetMapping
+    @GetMapping("/test")
     @Operation(summary = "Join", description = "Create member")
     @ApiResponses(
             value = {
