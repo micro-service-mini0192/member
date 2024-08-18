@@ -16,15 +16,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/member")
 @Validated
 @Tag(name = "Member API")
 public class MemberController {
@@ -46,6 +42,21 @@ public class MemberController {
         log.info("{}: “Create Member” API call", ip);
 
         memberService.save(takenDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Creation completed");
+    }
+
+    @GetMapping
+    @Operation(summary = "Join", description = "Create member")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "201", description = "Creation completed"),
+                    @ApiResponse(responseCode = "400", description = "Invalid input")
+            }
+    )
+    public ResponseEntity<String> test(HttpServletRequest request) {
+        String ip = request.getRemoteAddr();
+        log.info("{}: “Create Member” API call", ip);
+
         return ResponseEntity.status(HttpStatus.CREATED).body("Creation completed");
     }
 }
