@@ -1,0 +1,36 @@
+#name: Unit test
+#
+#on:
+#  push:
+#    branches:
+#      - feature/*
+#  pull_request:
+#    branches:
+#      - feature/*
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Download java v17
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '17'
+#          distribution: 'temurin'
+#
+#      - name: Create yml file
+#        run: |
+#          cd ./src/main/resources
+#          touch ./application.yml
+#          echo "${{ secrets.APPLICATION_YML }}" > ./application.yml
+#        shell: bash
+#
+#      - name: Permission settings
+#        run: chmod +x ./gradlew
+#
+#      - name: Build
+#        run: ./gradlew build
