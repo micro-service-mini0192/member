@@ -4,20 +4,54 @@ spring:
   application.name: member
 
   profiles:
-    active: dev
+    active: prod
 
-  jpa:
-    open-in-view: true
-    hibernate:
-      ddl-auto: update
-    show-sql: true
 
-  redis:
-    host: localhost
-    port: 6379
+resilience4j:
+  retry:
+    instances:
+      retry:
+        baseConfig: default
+    configs:
+      default:
+        max-attempts: 3
+        wait-duration: 3000ms
 
-eureka.client:
-  registerWithEureka: true
-  fetchRegistry: true
-  serviceUrl:
-    defaultZone: http://${url}:8761/eureka
+  circuitbreaker:
+    instances:
+      fail:
+        baseConfig: default
+
+    configs:
+      default:
+        sliding-window-type: count_based
+        slidingWindowSize: 5
+
+        failure-rate-threshold: 10
+        minimum-number-of-calls: 5
+
+        slow-call-rate-threshold: 10
+        slow-call-duration-threshold: 3000ms
+
+        permitted-number-of-calls-in-half-open-state: 10
+        max-wait-duration-in-half-open-state: 0
+
+        wait-duration-in-open-state: 10000ms
+        automatic-transition-from-open-to-half-open-enabled: true
+        register-health-indicator: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+  endpoint:
+    health:
+      show-details: always
+
+
+  health:
+    circuitbreakers:
+      enabled: true
