@@ -15,7 +15,7 @@ public class SwaggerConfig {
     private final String url = "/api/v1";
     @Bean
     public GroupedOpenApi group1() {
-        String[] paths = { url + "/member", url + "/member/**" };
+        String[] paths = { url, url + "/**" };
 
         return GroupedOpenApi.builder()
                 .group("Member API")

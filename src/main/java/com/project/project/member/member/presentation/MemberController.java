@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @Validated
+@RequestMapping("/api/v1")
 @Tag(name = "Member API")
 public class MemberController {
 
