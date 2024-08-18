@@ -1,4 +1,14 @@
+JWTKey: test
+
 spring:
+  application.name: member
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysql:3306/member
