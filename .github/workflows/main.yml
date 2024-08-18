@@ -60,5 +60,5 @@ jobs:
             sudo docker pull ${{secrets.DOCKERHUB_USERNAME}}/micro-member
             sudo docker stop member
             sudo docker container rm member
-            sudo docker run -dit -p 8082:8082 --network server --link mysql:mysql --name member ${{secrets.DOCKERHUB_USERNAME}}/micro-member
+            sudo docker run -dit -p 8082:8082 --network server --name member ${{secrets.DOCKERHUB_USERNAME}}/micro-member
             sudo docker image prune -f
