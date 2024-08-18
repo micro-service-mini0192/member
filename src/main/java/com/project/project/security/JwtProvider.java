@@ -33,11 +33,16 @@ public class JwtProvider {
 
     // The JWT token has user ID and role information
     public String createJwtToken(MemberDetails member) {
+        Long id = member.getId();
+        String username = member.getUsername();
+        String nickname = member.getNickname();
         String[] role = member.getAuthorities().stream().map(GrantedAuthority::getAuthority).toArray(String[]::new);
 
         return JWT.create()
                 .withExpiresAt(new Date(System.currentTimeMillis() + JWT_EXPIRATION_TIME))
-                .withClaim("id", member.getId())
+                .withClaim("id", id)
+                .withClaim("username", username)
+                .withClaim("nickname", nickname)
                 .withArrayClaim("role", role)
                 .sign(Algorithm.HMAC512(SECRET));
 
@@ -45,11 +50,16 @@ public class JwtProvider {
 
     // The Refresh token has user ID and role information
     public String createRefreshToken(MemberDetails member, long createTime) {
+        Long id = member.getId();
+        String username = member.getUsername();
+        String nickname = member.getNickname();
         String[] role = member.getAuthorities().stream().map(GrantedAuthority::getAuthority).toArray(String[]::new);
 
         return JWT.create()
                 .withExpiresAt(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION_TIME))
-                .withClaim("id", member.getId())
+                .withClaim("id", id)
+                .withClaim("username", username)
+                .withClaim("nickname", nickname)
                 .withArrayClaim("role", role)
                 .sign(Algorithm.HMAC512(String.valueOf(createTime + REFRESH_EXPIRATION_TIME)));
 
@@ -61,10 +71,14 @@ public class JwtProvider {
                 .verify(token);
 
         Long id = decodedJWT.getClaim("id").asLong();
+        String username = decodedJWT.getClaim("username").toString();
+        String nickname = decodedJWT.getClaim("nickname").toString();
         List<String> role = decodedJWT.getClaim("role").asList(String.class);
 
         return Member.builder()
                 .id(id)
+                .username(username)
+                .nickname(nickname)
                 .role(role)
                 .build();
     }

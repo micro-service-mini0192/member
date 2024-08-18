@@ -1,4 +1,6 @@
-package com.project.project.security.refreshtoken;
+package com.project.project.security.refreshtoken.application;
+
+import com.project.project.security.refreshtoken.domain.RefreshToken;
 
 public interface RefreshTokenService {
     void save(RefreshToken data);

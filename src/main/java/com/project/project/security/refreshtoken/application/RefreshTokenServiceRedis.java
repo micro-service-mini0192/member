@@ -1,5 +1,7 @@
-package com.project.project.security.refreshtoken;
+package com.project.project.security.refreshtoken.application;
 
+import com.project.project.security.refreshtoken.domain.RefreshToken;
+import com.project.project.security.refreshtoken.domain.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.project.project.security.refreshtoken;
+package com.project.project.security.refreshtoken.domain;
 
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;

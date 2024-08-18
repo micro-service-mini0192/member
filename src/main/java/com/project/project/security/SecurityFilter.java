@@ -2,7 +2,7 @@ package com.project.project.security;
 
 import com.project.project.security.filter.JwtFilter;
 import com.project.project.security.filter.LoginFilter;
-import com.project.project.security.refreshtoken.RefreshTokenService;
+import com.project.project.security.refreshtoken.application.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

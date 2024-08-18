@@ -17,6 +17,7 @@ public class MemberDetails implements UserDetails {
     public Long getId() {
         return member.getId();
     }
+    public String getNickname() { return member.getNickname(); }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

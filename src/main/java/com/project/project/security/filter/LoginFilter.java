@@ -2,8 +2,8 @@ package com.project.project.security.filter;
 
 import com.project.project.member.member.domain.MemberDetails;
 import com.project.project.security.JwtProvider;
-import com.project.project.security.refreshtoken.RefreshToken;
-import com.project.project.security.refreshtoken.RefreshTokenService;
+import com.project.project.security.refreshtoken.domain.RefreshToken;
+import com.project.project.security.refreshtoken.application.RefreshTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
