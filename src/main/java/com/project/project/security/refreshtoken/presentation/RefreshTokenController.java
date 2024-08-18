@@ -2,7 +2,6 @@ package com.project.project.security.refreshtoken.presentation;
 
 import com.project.project.member.member.domain.Member;
 import com.project.project.member.member.domain.MemberDetails;
-import com.project.project.member.member.presentation.dto.MemberRequest;
 import com.project.project.security.JwtProvider;
 import com.project.project.security.refreshtoken.application.RefreshTokenService;
 import com.project.project.security.refreshtoken.domain.RefreshToken;
@@ -21,10 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -37,7 +33,7 @@ public class RefreshTokenController {
     private final JwtProvider jwtProvider;
     private final RefreshTokenService refreshTokenService;
 
-    @GetMapping
+    @PostMapping
     @Operation(summary = "JWT Token reissue", description = "JWT Token reissue")
     @ApiResponses(
             value = {

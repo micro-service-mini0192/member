@@ -3,7 +3,7 @@ JWTKey: test
 spring:
   application.name: member
   profiles:
-    active: prod
+    active: dev
 
   jpa:
     open-in-view: true
