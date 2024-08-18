@@ -1,6 +1,5 @@
 JWTKey: test
 
-
 spring:
   profiles:
     active: dev
@@ -12,7 +11,6 @@ spring:
     show-sql: true
 
   application.name: member
-#  config.import: optional:configserver:http://admin:1234@localhost:9000
 
   eureka.client:
     registerWithEureka: true
