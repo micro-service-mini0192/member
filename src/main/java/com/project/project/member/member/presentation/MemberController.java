@@ -27,6 +27,12 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @GetMapping("/test1")
+    public ResponseEntity<String> test() {
+        System.out.println("테스트 호출");
+        return null;
+    }
+
     @PostMapping("/test")
     @Operation(summary = "Join", description = "Create member")
     @ApiResponses(
