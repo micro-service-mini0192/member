@@ -37,7 +37,7 @@ public class JwtProvider {
 
         return JWT.create()
                 .withExpiresAt(new Date(System.currentTimeMillis() + JWT_EXPIRATION_TIME))
-                .withClaim("id", member.getMemberId())
+                .withClaim("id", member.getId())
                 .withArrayClaim("role", role)
                 .sign(Algorithm.HMAC512(SECRET));
 
@@ -49,7 +49,7 @@ public class JwtProvider {
 
         return JWT.create()
                 .withExpiresAt(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION_TIME))
-                .withClaim("id", member.getMemberId())
+                .withClaim("id", member.getId())
                 .withArrayClaim("role", role)
                 .sign(Algorithm.HMAC512(String.valueOf(createTime + REFRESH_EXPIRATION_TIME)));
 

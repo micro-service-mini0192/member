@@ -28,13 +28,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping
-    public ResponseEntity<String> test() {
-        System.out.println("테스트 호출");
-        return null;
-    }
-
-    @PostMapping("/test")
+    @PostMapping
     @Operation(summary = "Join", description = "Create member")
     @ApiResponses(
             value = {
@@ -49,21 +43,6 @@ public class MemberController {
         log.info("{}: “Create Member” API call", ip);
 
         memberService.save(takenDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Creation completed");
-    }
-
-    @GetMapping("/test")
-    @Operation(summary = "Join", description = "Create member")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "201", description = "Creation completed"),
-                    @ApiResponse(responseCode = "400", description = "Invalid input")
-            }
-    )
-    public ResponseEntity<String> test(HttpServletRequest request) {
-        String ip = request.getRemoteAddr();
-        log.info("{}: “Create Member” API call", ip);
-
         return ResponseEntity.status(HttpStatus.CREATED).body("Creation completed");
     }
 }

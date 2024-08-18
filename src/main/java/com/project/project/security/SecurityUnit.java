@@ -9,7 +9,7 @@ public class SecurityUnit {
     public static Long getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof MemberDetails) {
-            return ((MemberDetails) authentication.getPrincipal()).getMemberId();
+            return ((MemberDetails) authentication.getPrincipal()).getId();
         }
         throw new ServerException("Unauthenticated user");
     }
