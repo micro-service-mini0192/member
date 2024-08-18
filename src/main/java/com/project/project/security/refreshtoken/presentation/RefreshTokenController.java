@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @Validated
-@RequestMapping("/v1/refreshToken")
+@RequestMapping("/v1/refresh-token")
 @Tag(name = "Member API")
 public class RefreshTokenController {
 
