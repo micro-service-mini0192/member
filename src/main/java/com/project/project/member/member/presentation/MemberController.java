@@ -22,12 +22,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @Validated
+@RequestMapping("/v1")
 @Tag(name = "Member API")
 public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/test1")
+    @GetMapping
     public ResponseEntity<String> test() {
         System.out.println("테스트 호출");
         return null;

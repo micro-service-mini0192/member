@@ -12,10 +12,9 @@ import org.springframework.context.annotation.Configuration;
                 version = "v1"))
 @Configuration
 public class SwaggerConfig {
-    private final String url = "/api/v1";
     @Bean
     public GroupedOpenApi group1() {
-        String[] paths = { url, url + "/**" };
+        String[] paths = {"/**"};
 
         return GroupedOpenApi.builder()
                 .group("Member API")
