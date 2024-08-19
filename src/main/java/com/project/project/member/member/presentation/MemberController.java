@@ -45,4 +45,18 @@ public class MemberController {
         memberService.save(takenDto);
         return ResponseEntity.status(HttpStatus.CREATED).body("Creation completed");
     }
+
+    @GetMapping
+    @Operation(summary = "Join", description = "Create member")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "201", description = "Creation completed"),
+                    @ApiResponse(responseCode = "400", description = "Invalid input")
+            }
+    )
+    public ResponseEntity<String> save(HttpServletRequest request) {
+        String ip = request.getRemoteAddr();
+        log.info("{}: “Create Member” API call", ip);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Creation completed");
+    }
 }

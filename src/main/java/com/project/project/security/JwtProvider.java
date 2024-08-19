@@ -45,7 +45,6 @@ public class JwtProvider {
                 .withClaim("nickname", nickname)
                 .withArrayClaim("role", role)
                 .sign(Algorithm.HMAC512(SECRET));
-
     }
 
     // The Refresh token has user ID and role information
@@ -62,7 +61,6 @@ public class JwtProvider {
                 .withClaim("nickname", nickname)
                 .withArrayClaim("role", role)
                 .sign(Algorithm.HMAC512(String.valueOf(createTime + REFRESH_EXPIRATION_TIME)));
-
     }
 
     public Member decodeToken(String token, String key) {

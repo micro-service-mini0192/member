@@ -6,6 +6,7 @@ import com.project.project.security.JwtProvider;
 import com.project.project.security.refreshtoken.application.RefreshTokenService;
 import com.project.project.security.refreshtoken.domain.RefreshToken;
 import com.project.project.security.refreshtoken.presentation.dto.RefreshTokenRequest;
+import com.project.project.security.refreshtoken.presentation.dto.RefreshTokenResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -41,7 +42,7 @@ public class RefreshTokenController {
                     @ApiResponse(responseCode = "401", description = "Refresh token is invalid")
             }
     )
-    public ResponseEntity<String> jwtReissue(@Parameter(content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
+    public ResponseEntity<RefreshTokenResponse.JwtToken> jwtReissue(@Parameter(content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
                                              @Valid @RequestBody RefreshTokenRequest.JwtReissue takenDto,
                                              HttpServletRequest request) {
         String ip = request.getRemoteAddr();
@@ -53,7 +54,7 @@ public class RefreshTokenController {
         RefreshToken savedRefreshToken = refreshTokenService.findById(refreshToken);
         if(savedRefreshToken == null) {
             log.info("Refresh token is invalid");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Refresh token is invalid");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
 
         Member tokenMember = jwtProvider.decodeToken(refreshToken, String.valueOf(savedRefreshToken.getExpirationTime()));
@@ -61,7 +62,11 @@ public class RefreshTokenController {
         MemberDetails reissueTokenMemberDetails = new MemberDetails(tokenMember);
         String reissueToken = jwtProvider.createJwtToken(reissueTokenMemberDetails);
 
+        RefreshTokenResponse.JwtToken rtn = RefreshTokenResponse.JwtToken.builder()
+                .jwtToken(jwtProvider.TOKEN_PREFIX + reissueToken)
+                .build();
+
         log.info("JWT Token reissue successful");
-        return ResponseEntity.ok(jwtProvider.TOKEN_PREFIX + reissueToken);
+        return ResponseEntity.ok(rtn);
     }
 }
